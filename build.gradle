@@ -1,12 +1,32 @@
+/*
+SI PUO' USARE ANCHE JAVA PER SCRIVERE PLUGIN!!!!!
+altra cosa e' il linguaggio di Build.Gradle in android
+La dipendenza Groovy permette di riconoscere la path di alcuni folder...percio' occorre fare refresh (invalidates e restart)
+Questi sono i plugin necessari per il momento per la creazione del plugin!!!!
+uno per il linguaggio di programmazione e l'altro per la creazione di plugin:
+aggiunge GradleApi e esegue la validazione del plugin JAR
+https://docs.gradle.org/current/userguide/java_gradle_plugin.html
+POI SI DEVE CREARE UN BLOCCO CON I DATI DEL PLUGIN!!!!! che interagiscono con il java-gradle-plugin!!!!!
+Quando applicato pubblicherà i diversi plugins con lo stesso nome!!
+vedi documentazione ufficiale!! (sopra)
+- maven-publish serve per pubblicare il plugin in Maven
+PUBLICARE UN PLUGIN (UFFICIALE): https://docs.gradle.org/current/userguide/publishing_gradle_plugins.html
+*/
+
+
 //noinspection GroovyAssignabilityCheck
 plugins {
     id 'groovy'
     id 'java-gradle-plugin'
+    id 'maven-publish'
 }
 
+//group che in un certo modo specifica il nome, Snapshot indica che ancora in fase di sviluppo!!!
+//group caratterizza la prima parte della dipendenza!!! https://stackoverflow.com/questions/23354243/what-is-group-property-for-in-gradle
 group = 'com.barsali'
 version = '0.0.1-SNAPSHOT'
 
+//mavenLocal indica un caricamento locale del plugin!!!!
 //noinspection GroovyAssignabilityCheck
 repositories {
     //google()
@@ -20,7 +40,18 @@ repositories {
 dependencies {
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
 }
+
+//specifica che si usa per fare test la piattaforma di JUnit 5 (quella che usa Spock!! versione che abbiamo dato)
 test {
     useJUnitPlatform()
 }
+
+/*gradlePlugin {
+    plugins {
+        fileDiff {
+            id = 'com.barsali.file-diff'
+            implementationClass = 'com.barsali.plugins.filediff.FileDiffPlugin'
+        }
+    }
+}*/
 

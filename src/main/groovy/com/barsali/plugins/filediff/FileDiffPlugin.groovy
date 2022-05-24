@@ -8,6 +8,12 @@ import org.gradle.api.provider.Property
 import javax.naming.spi.ObjectFactory
 
 
+/*
+DI SOLITO SI USA UNA PATH CHE COMPRENDA ANCHE IL GRUPPO PREFISSATO + PLUGINS + NOME
+Classe e proprietà sono astratte!!!
+REGULARFILEPROPERTY estende Property (che si usa per riferirsi ad oggetti prima che il loro valore venga effettivamente impostato!!!
+MANAGEDPROPERTIES: https://docs.gradle.org/current/userguide/custom_gradle_types.html
+*/
 abstract class FileDiffExtension {
     abstract RegularFileProperty getFile1()
     abstract RegularFileProperty getFile2()

@@ -31,7 +31,6 @@ abstract class FileDiffTask extends DefaultTask {
         println "File written to $resultFile"
         println diffResult
     }
-
     private static long size(RegularFileProperty regularFileProperty) {
         return regularFileProperty.get().asFile.size()
     }
